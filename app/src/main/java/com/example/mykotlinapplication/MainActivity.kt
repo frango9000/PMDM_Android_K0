@@ -2,17 +2,20 @@ package com.example.mykotlinapplication
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import java.time.Duration
 
 const val CALC_REQUEST = 1  // The request code
+
+const val REQUEST_IMAGE_CAPTURE = 2
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,9 +27,17 @@ class MainActivity : AppCompatActivity() {
         btnAzul.setOnClickListener{abrirActivity2(it)}
         btnVerde.setOnClickListener{abrirActivity2(it)}
         btnCalc.setOnClickListener {  abrirActivityCalc(it)}
+        btnCam.setOnClickListener { dispatchTakePictureIntent(it) }
 
     }
 
+    private fun dispatchTakePictureIntent(v: View) {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
 
     fun abrirActivity2(v: View){
         val btn = v as Button
@@ -67,6 +78,9 @@ class MainActivity : AppCompatActivity() {
                 resultado.text = result.toString()
 
             }
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data!!.extras!!.get("data") as Bitmap
+            captura.setImageBitmap(imageBitmap)
         }
     }
 }
