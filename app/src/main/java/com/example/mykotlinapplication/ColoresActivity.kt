@@ -29,14 +29,17 @@ class ColoresActivity : AppCompatActivity() {
         }
     }
 
+    //boton navegar a google
     private fun google(it: View?) {
         browse("http://google.es")
     }
 
+    //boton realizar una llamada de emergencia
     private fun call(it: View?) {
         makeCall("112")
     }
 
+    ///volver a la actividad Main
     private fun volver(it: View?) {
         startActivity(intentFor<MainActivity>().singleTop())
     }
