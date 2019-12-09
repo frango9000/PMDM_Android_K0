@@ -75,24 +75,21 @@
 
     <Button
         android:id="@+id/btnCam"
-        android:layout_width="96dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="56dp"
+        android:layout_height="60dp"
+        android:rotation="-90"
         android:text="Cam"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/captura"
+        tools:layout_editor_absoluteX="2dp" />
 
     <ImageView
         android:id="@+id/captura"
         android:layout_width="308dp"
         android:layout_height="259dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCam"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnCam"
         app:layout_constraintTop_toBottomOf="@+id/webBrowse"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
