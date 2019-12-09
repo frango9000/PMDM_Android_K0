@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         browse(webBrowse.text.toString())
     }
 
+    //Accion Boton Tomar foto y mostrarla en Image View
     private fun dispatchTakePictureIntent(v: View) {
         (v as Button).setBackgroundColor(Color.DKGRAY)
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
