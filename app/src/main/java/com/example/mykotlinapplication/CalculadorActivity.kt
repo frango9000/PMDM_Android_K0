@@ -31,6 +31,7 @@ class CalculadorActivity : AppCompatActivity() {
 
     }
 
+    //retornar el resultado de la operacion seleccionada
     fun retornarResultado(it: View?) {
         val btn = it as Button
         val op = btn.text

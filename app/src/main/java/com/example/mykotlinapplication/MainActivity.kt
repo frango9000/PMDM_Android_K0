@@ -61,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentFor<ColoresActivity>("color" to btn.text).singleTop())
 
     }
+
+    //accion enviar numeros a ser calculados (el resultado sera retornado en el activityForResult)
     fun abrirActivityCalc(v: View){
         (v as Button).setBackgroundColor(Color.DKGRAY)
         var num1 = a1num1.text
@@ -78,13 +80,13 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, CALC_REQUEST)
 
 
-
         }catch (nfe: NumberFormatException){
             Toast.makeText(this, "Numero Invalido", Toast.LENGTH_SHORT)
         }
 
     }
 
+    //Recuperamos el dato del resultado y lo mostramos
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Check which request we're responding to
