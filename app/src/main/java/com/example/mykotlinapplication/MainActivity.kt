@@ -19,6 +19,8 @@ const val CALC_REQUEST = 1  // The request code
 
 const val REQUEST_IMAGE_CAPTURE = 2
 
+const val REQUEST_TRIVIA_BOOL = 3
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +38,10 @@ class MainActivity : AppCompatActivity() {
         btnCam.setOnClickListener { dispatchTakePictureIntent(it) }
         btnBrowse.setOnClickListener { dispatchGoBrowse(it) }
 
+        btnTrivia.setOnClickListener { goTrivia(it) }
+
     }
+
 
     //Accion Boton Navegar A
     private fun dispatchGoBrowse(it: View?) {
@@ -52,6 +57,15 @@ class MainActivity : AppCompatActivity() {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
+    }
+
+    //Accion Iniciar Trivia
+    private fun goTrivia(v: View) {
+        (v as Button).setBackgroundColor(Color.DKGRAY)
+
+        val intent = Intent(this, TriviaActivity::class.java)
+        startActivityForResult(intent, REQUEST_TRIVIA_BOOL)
+
     }
 
     //accion ira ColoresActivity
@@ -90,17 +104,28 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Check which request we're responding to
-        if (requestCode == CALC_REQUEST) {
-            // Make sure the request was successful
-            if (resultCode == Activity.RESULT_OK) {
-
-                val result =data?.getIntExtra("result", 0)
-                resultado.text = result.toString()
-
+        when (requestCode) {
+            //Recuperar resultado de calculadora
+            CALC_REQUEST -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    val result = data?.getIntExtra("result", 0)
+                    resultado.text = result.toString()
+                }
             }
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data!!.extras!!.get("data") as Bitmap
-            captura.setImageBitmap(imageBitmap)
+            //recuperar imagen tomada e insertar en imageview
+            REQUEST_IMAGE_CAPTURE -> {
+                if (resultCode == RESULT_OK) {
+                    val imageBitmap = data!!.extras!!.get("data") as Bitmap
+                    captura.setImageBitmap(imageBitmap)
+                }
+            }
+            //recuperar resultado de trivia y ajustar el color del boton
+            REQUEST_TRIVIA_BOOL -> {
+                if (resultCode == RESULT_OK) {
+                    val result = data?.getBooleanExtra("bool", false)
+                    btnTrivia.setBackgroundColor(if (result!!) Color.GREEN else Color.RED)
+                }
+            }
         }
     }
 }
