@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //Accion Boton Navegar A
     private fun dispatchGoBrowse(it: View?) {
         (it as Button).setBackgroundColor(Color.DKGRAY)
         browse(webBrowse.text.toString())
