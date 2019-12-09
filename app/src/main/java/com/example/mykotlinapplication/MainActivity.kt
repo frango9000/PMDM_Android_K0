@@ -3,6 +3,7 @@ package com.example.mykotlinapplication
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.browse
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
 
@@ -24,14 +26,25 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnAzul.setOnClickListener{abrirActivity2(it)}
-        btnVerde.setOnClickListener{abrirActivity2(it)}
+
+        btnAzul.setOnClickListener { abrirActivityColores(it) }
+        btnVerde.setOnClickListener { abrirActivityColores(it) }
+        btnAmarillo.setOnClickListener { abrirActivityColores(it) }
+        btnRojo.setOnClickListener { abrirActivityColores(it) }
+
         btnCalc.setOnClickListener {  abrirActivityCalc(it)}
         btnCam.setOnClickListener { dispatchTakePictureIntent(it) }
+        btnBrowse.setOnClickListener { dispatchGoBrowse(it) }
 
     }
 
+    private fun dispatchGoBrowse(it: View?) {
+        (it as Button).setBackgroundColor(Color.DKGRAY)
+        browse(webBrowse.text.toString())
+    }
+
     private fun dispatchTakePictureIntent(v: View) {
+        (v as Button).setBackgroundColor(Color.DKGRAY)
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
@@ -39,12 +52,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun abrirActivity2(v: View){
+    fun abrirActivityColores(v: View) {
         val btn = v as Button
-        startActivity(intentFor<Main2Activity>("color" to btn.text).singleTop())
+        btn.setBackgroundColor(Color.DKGRAY)
+        startActivity(intentFor<ColoresActivity>("color" to btn.text).singleTop())
 
     }
     fun abrirActivityCalc(v: View){
+        (v as Button).setBackgroundColor(Color.DKGRAY)
         var num1 = a1num1.text
         var num2 = a1num2.text
 

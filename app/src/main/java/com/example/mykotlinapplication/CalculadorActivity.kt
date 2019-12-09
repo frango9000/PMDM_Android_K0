@@ -2,10 +2,10 @@ package com.example.mykotlinapplication
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_calculador.*
 
 
@@ -38,7 +38,7 @@ class CalculadorActivity : AppCompatActivity() {
         val result = when(op){
             "+" -> n1 + n2
             "-" -> n1 - n2
-            "*" -> n1 * n2
+            "x" -> n1 * n2
             "/" -> n1 / n2
             "%" -> n1 % n2
 

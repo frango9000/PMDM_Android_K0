@@ -1,16 +1,16 @@
 package com.example.mykotlinapplication
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main2.*
 import org.jetbrains.anko.browse
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.makeCall
 import org.jetbrains.anko.singleTop
 
-class Main2Activity : AppCompatActivity() {
+class ColoresActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +22,8 @@ class Main2Activity : AppCompatActivity() {
         when(textView.text){
             "Azul" -> layout.setBackgroundColor(Color.BLUE)
             "Verde" -> layout.setBackgroundColor(Color.GREEN)
+            "Rojo" -> layout.setBackgroundColor(Color.RED)
+            "Amarillo" -> layout.setBackgroundColor(Color.YELLOW)
         }
     }
 
