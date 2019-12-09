@@ -19,6 +19,8 @@ class ColoresActivity : AppCompatActivity() {
         btnBack.setOnClickListener { volver(it) }
         buttonCall.setOnClickListener { call(it) }
         buttonGoogle.setOnClickListener { google(it) }
+
+        //cambiar el color del fondo en base al boton presionado
         when(textView.text){
             "Azul" -> layout.setBackgroundColor(Color.BLUE)
             "Verde" -> layout.setBackgroundColor(Color.GREEN)

@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //accion ira ColoresActivity
     fun abrirActivityColores(v: View) {
         val btn = v as Button
         btn.setBackgroundColor(Color.DKGRAY)
